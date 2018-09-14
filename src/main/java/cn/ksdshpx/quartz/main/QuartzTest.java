@@ -19,6 +19,9 @@ public class QuartzTest {
         JobDetail jobDetail = JobBuilder.newJob(MyJob.class)
                 .withIdentity("job1", "group1")
                 .build();
+        System.out.println("name:"+jobDetail.getKey().getName());
+        System.out.println("group:"+jobDetail.getKey().getGroup());
+        System.out.println("job:"+jobDetail.getJobClass().getName());
         //触发器
         Trigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger1", "group1")
                 .startNow()

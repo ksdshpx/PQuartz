@@ -15,6 +15,9 @@ import java.util.Date;
  * Description:定义任务类
  */
 public class MyJob implements Job {
+    public MyJob(){
+        System.out.println("欢迎访问Myjob!");
+    }
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         //执行任务
