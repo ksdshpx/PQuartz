@@ -18,13 +18,15 @@ public class QuartzTest {
         //任务
         JobDetail jobDetail = JobBuilder.newJob(MyJob.class)
                 .withIdentity("job1", "group1")
+                .usingJobData("message","haha")
                 .build();
-        System.out.println("name:"+jobDetail.getKey().getName());
-        System.out.println("group:"+jobDetail.getKey().getGroup());
-        System.out.println("job:"+jobDetail.getJobClass().getName());
+        //System.out.println("name:"+jobDetail.getKey().getName());
+        //System.out.println("group:"+jobDetail.getKey().getGroup());
+        //System.out.println("job:"+jobDetail.getJobClass().getName());
         //触发器
         Trigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger1", "group1")
                 .startNow()
+                .usingJobData("message","heihei")
                 .withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(5).repeatForever())
                 .build();
         scheduler.scheduleJob(jobDetail, trigger);
