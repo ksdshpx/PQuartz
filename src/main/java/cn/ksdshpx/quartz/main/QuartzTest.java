@@ -19,6 +19,7 @@ public class QuartzTest {
         JobDetail jobDetail = JobBuilder.newJob(MyJob.class)
                 .withIdentity("job1", "group1")
                 .usingJobData("message","haha")
+                .usingJobData("count",0)
                 .build();
         //System.out.println("name:"+jobDetail.getKey().getName());
         //System.out.println("group:"+jobDetail.getKey().getGroup());

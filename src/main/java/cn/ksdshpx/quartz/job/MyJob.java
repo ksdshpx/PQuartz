@@ -12,8 +12,14 @@ import java.util.Date;
  * Time: 10:30
  * Description:定义任务类
  */
+//@PersistJobDataAfterExecution
 public class MyJob implements Job {
     private String message;
+    private Integer count;
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
 
     public void setMessage(String message) {
         this.message = message;
@@ -39,5 +45,8 @@ public class MyJob implements Job {
         System.out.println("message:" + message);
         //执行任务
         System.out.println("正在执行数据库的备份,备份数据库的时间是:" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        ++count;
+        jobExecutionContext.getJobDetail().getJobDataMap().put("count", count);
+        System.out.println("count:" + count);
     }
 }
